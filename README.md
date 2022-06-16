@@ -1,4 +1,4 @@
-[![Build Status](https://img.shields.io/github/workflow/status/zxteamorg/docker.devel.mdbook/build-and-push)](https://github.com/zxteamorg/docker.devel.mdbook/actions)
+[![Build Status](https://github.com/zxteamorg/docker.devel.mdbook/actions/workflows/build.yml/badge.svg)](https://github.com/zxteamorg/docker.devel.mdbook/actions/workflows/build.yml)
 [![Docker Image Version](https://img.shields.io/docker/v/zxteamorg/devel.mdbook?sort=date&label=Version)](https://hub.docker.com/r/zxteamorg/devel.mdbook/tags)
 [![Docker Image Size](https://img.shields.io/docker/image-size/zxteamorg/devel.mdbook?label=Image%20Size)](https://hub.docker.com/r/zxteamorg/devel.mdbook/tags)
 [![Docker Pulls](https://img.shields.io/docker/pulls/zxteamorg/devel.mdbook?label=Image%20Pulls)](https://hub.docker.com/r/zxteamorg/devel.mdbook)

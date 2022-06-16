@@ -27,22 +27,39 @@ if [ $$ -eq 1 ]; then
 	exit $?
 fi
 
-# Use "public" as default deployment zone
-DEPLOYMENT_ZONE="${1:-public}"
-
 # Use "src" as default sources directory (override "src" value in book.toml)
 export MDBOOK_BOOK__SRC="${MDBOOK_BOOK__SRC:-src}"
 
-if [ ! -f "/data/src/SUMMARY-${DEPLOYMENT_ZONE}.md" ]; then
-	echo "Summary file /data/src/SUMMARY-${DEPLOYMENT_ZONE}.md was not found." >&2
-	exit 2
+BUILD_TARGET="${1}"
+if [ -n "${BUILD_TARGET}" ]; then
+	echo "Using BUILD_TARGET=${BUILD_TARGET}"
+
+	if [ ! -f "/data/src/SUMMARY-${BUILD_TARGET}.md" ]; then
+		echo "ERROR: Target summary file '/data/src/SUMMARY-${BUILD_TARGET}.md' was not found. Maybe you pass wrong build target '${BUILD_TARGET}'?!" >&2
+		exit 2
+	fi
+
+	if [ -f /data/src/SUMMARY.md ]; then
+		rm /data/src/SUMMARY.md
+	fi
+
+	echo "Linking '/data/src/SUMMARY.md' -> 'SUMMARY-${BUILD_TARGET}.md'"
+	ln -s "SUMMARY-${BUILD_TARGET}.md" /data/src/SUMMARY.md
+else
+	if [ ! -f /data/src/SUMMARY.md ]; then
+		echo "ERROR: Target summary file '/data/src/SUMMARY.md' was not found. Maybe you miss to pass build target?!" >&2
+		exit 2
+	fi
 fi
 
-if [ -f /data/src/SUMMARY.md ]; then
-	rm /data/src/SUMMARY.md
-fi
+set -e
 
-ln -s "SUMMARY-${DEPLOYMENT_ZONE}.md" /data/src/SUMMARY.md
+echo
+echo "Launching 'mdbook-mermaid' to add the required files and configuration ..."
+echo
+mdbook-mermaid install /data/
 
+echo
+echo "Starting 'mdbook serve' to serve a book and rebuilds it on changes ..."
+echo
 exec mdbook serve --hostname 0.0.0.0 --port 8000 /data
-
