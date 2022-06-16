@@ -27,10 +27,22 @@ if [ $$ -eq 1 ]; then
 	exit $?
 fi
 
+while [[ "$1" =~ ^--.* ]]; do
+	case "$1" in
+		--build-target=*)
+			BUILD_TARGET=$(echo "$1" | cut -d= -f2-)
+			;;
+		*)
+			echo "Unexpected parameter $1" >&2
+			exit -127
+	esac
+	shift
+done
+
+
 # Use "src" as default sources directory (override "src" value in book.toml)
 export MDBOOK_BOOK__SRC="${MDBOOK_BOOK__SRC:-src}"
 
-BUILD_TARGET="${1}"
 if [ -n "${BUILD_TARGET}" ]; then
 	echo "Using BUILD_TARGET=${BUILD_TARGET}"
 
@@ -60,6 +72,11 @@ echo
 mdbook-mermaid install /data/
 
 echo
+echo "Starting 'mdbook clean' ..."
+echo
+mdbook clean /data/
+
+echo
 echo "Starting 'mdbook serve' to serve a book and rebuilds it on changes ..."
 echo
-exec mdbook serve --hostname 0.0.0.0 --port 8000 /data
+exec mdbook serve --hostname 0.0.0.0 --port 8000 /data/
