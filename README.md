@@ -1,8 +1,8 @@
-[![Build Status](https://github.com/zxteamorg/docker.devel.mdbook/actions/workflows/build.yml/badge.svg)](https://github.com/zxteamorg/docker.devel.mdbook/actions/workflows/build.yml)
-[![Docker Image Version](https://img.shields.io/docker/v/zxteamorg/devel.mdbook?sort=date&label=Version)](https://hub.docker.com/r/zxteamorg/devel.mdbook/tags)
-[![Docker Image Size](https://img.shields.io/docker/image-size/zxteamorg/devel.mdbook?label=Image%20Size)](https://hub.docker.com/r/zxteamorg/devel.mdbook/tags)
-[![Docker Pulls](https://img.shields.io/docker/pulls/zxteamorg/devel.mdbook?label=Image%20Pulls)](https://hub.docker.com/r/zxteamorg/devel.mdbook)
-[![Docker Stars](https://img.shields.io/docker/stars/zxteamorg/devel.mdbook?label=Image%20Stars)](https://hub.docker.com/r/zxteamorg/devel.mdbook)
+[![Build Status](https://github.com/zxteamorg/docker.mdbook/actions/workflows/build.yml/badge.svg)](https://github.com/zxteamorg/docker.mdbook/actions/workflows/build.yml)
+[![Docker Image Version](https://img.shields.io/docker/v/zxteamorg/mdbook?sort=date&label=Version)](https://hub.docker.com/r/zxteamorg/mdbook/tags)
+[![Docker Image Size](https://img.shields.io/docker/image-size/zxteamorg/mdbook?label=Image%20Size)](https://hub.docker.com/r/zxteamorg/mdbook/tags)
+[![Docker Pulls](https://img.shields.io/docker/pulls/zxteamorg/mdbook?label=Image%20Pulls)](https://hub.docker.com/r/zxteamorg/mdbook)
+[![Docker Stars](https://img.shields.io/docker/stars/zxteamorg/mdbook?label=Image%20Stars)](https://hub.docker.com/r/zxteamorg/mdbook)
 
 # mdBook
 
@@ -43,7 +43,7 @@ The image embedding fixed version of `mdBook` to prevent breaking changes in `md
 # Launch
 1. Start development server in documentation root directory (where `mdbook.yml` located)
 	```bash
-	docker run --interactive --tty --rm --volume ${PWD}:/data --publish 8000:8000 zxteamorg/devel.mdbook
+	docker run --interactive --tty --rm --volume ${PWD}:/data --publish 8000:8000 zxteamorg/mdbook
 	```
 1. Open browser http://127.0.0.1:8000/
 1. Edit content and look for hot-reloaded changes in the browser
@@ -59,10 +59,10 @@ The image embedding fixed version of `mdBook` to prevent breaking changes in `md
 
 ## Build
 ```shell
-docker build --tag zxteamorg/devel.mdbook --file Dockerfile .
+docker build --tag zxteamorg/mdbook --file Dockerfile .
 ```
 
 ## Build and launch
 ```shell
-docker build --tag zxteamorg/devel.mdbook --file Dockerfile . && docker run --interactive --tty --rm --volume ${PWD}:/data --publish 8000:8000 zxteamorg/devel.mdbook
+docker build --tag zxteamorg/mdbook --file Dockerfile . && docker run --interactive --tty --rm --volume ${PWD}:/data --publish 8000:8000 zxteamorg/mdbook
 ```
