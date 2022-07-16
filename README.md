@@ -37,6 +37,7 @@ The image embedding fixed version of `mdBook` to prevent breaking changes in `md
 # Inside
 
 * [mdBook](https://rust-lang.github.io/mdBook/) v0.4.18
+* [git](https://git-scm.com/) v2.36.2
 * [libgcc](https://pkgs.alpinelinux.org/package/edge/main/x86_64/libgcc)
 
 
